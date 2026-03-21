@@ -1,4 +1,4 @@
-import { Search, Rocket, Video, Users, Star } from "lucide-react";
+import { Search, Rocket, Video, Users, Star, Zap } from "lucide-react";
 import ClipOfTheDay from "../components/clip_of_the_day";
 
 export default function Home() {
@@ -138,6 +138,103 @@ export default function Home() {
               <a href="#" className="text-purple-500 hover:text-purple-400 font-semibold flex items-center gap-2 transition">
                 Read reviews <span>→</span>
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Games Section */}
+      <section className="w-full px-4 md:px-10 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="flex items-center justify-between mb-12">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">Explore Popular Games</h2>
+              <p className="text-xl text-gray-400">Discover what's trending and join the conversation</p>
+            </div>
+            <a href="/discover" className="text-purple-500 hover:text-purple-400 font-semibold transition whitespace-nowrap">
+              View All Games →
+            </a>
+          </div>
+
+          {/* Games Grid */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Cyberpunk 2077 Card */}
+            <div className="bg-[#210F36] border border-[#2A1840] hover:border-purple-600 rounded-lg overflow-hidden transition-colors duration-300 group cursor-pointer">
+              <div className="relative h-48 bg-gradient-to-br from-purple-600 to-purple-900 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1618005182384-a83a8e7d3e32?w=400&h=300&fit=crop" 
+                  alt="Cyberpunk 2077" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  HOT
+                </div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Cyberpunk 2077</h3>
+                <p className="text-gray-400 text-sm mb-4">Action RPG • CD PROJEKT RED</p>
+                <div className="flex items-center gap-6 text-gray-400 text-sm">
+                  <div className="flex items-center gap-2">
+                    <Users size={18} className="text-purple-500" />
+                    <span>1.2M Members</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Zap size={18} className="text-purple-500" />
+                    <span>450+ Active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Valorant Card */}
+            <div className="bg-[#210F36] border border-[#2A1840] hover:border-purple-600 rounded-lg overflow-hidden transition-colors duration-300 group cursor-pointer">
+              <div className="relative h-48 bg-gradient-to-br from-green-900 to-gray-900 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1552820728-8ac41f1ce891?w=400&h=300&fit=crop" 
+                  alt="Valorant" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Valorant</h3>
+                <p className="text-gray-400 text-sm mb-4">Tactical Shooter • Riot Games</p>
+                <div className="flex items-center gap-6 text-gray-400 text-sm">
+                  <div className="flex items-center gap-2">
+                    <Users size={18} className="text-purple-500" />
+                    <span>850k Members</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Zap size={18} className="text-purple-500" />
+                    <span>1.2k Active</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Elden Ring Card */}
+            <div className="bg-[#210F36] border border-[#2A1840] hover:border-purple-600 rounded-lg overflow-hidden transition-colors duration-300 group cursor-pointer">
+              <div className="relative h-48 bg-gradient-to-br from-yellow-700 to-purple-900 overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=300&fit=crop" 
+                  alt="Elden Ring" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-white mb-2">Elden Ring</h3>
+                <p className="text-gray-400 text-sm mb-4">Fantasy RPG • FromSoftware</p>
+                <div className="flex items-center gap-6 text-gray-400 text-sm">
+                  <div className="flex items-center gap-2">
+                    <Users size={18} className="text-purple-500" />
+                    <span>2.1M Members</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Zap size={18} className="text-purple-500" />
+                    <span>300+ Active</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
