@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Link from 'next/link';
 import { Search, Rocket, Video, Users, Star, Zap, UserPlus, Share2, Mail } from "lucide-react";
 import ClipOfTheDay from "../components/clip_of_the_day";
 import { initializeAllAnimations } from "@/lib/animations";
@@ -39,9 +40,9 @@ export default function Home() {
               className="bg-inherit text-white placeholder-gray-400 outline-none w-48" 
             />
           </div>
-          <button className="bg-purple-600 hover:bg-purple-700 hover:cursor-pointer text-white px-6 py-2 rounded-lg font-semibold transition">
+          <Link href="/auth" className="bg-purple-600 hover:bg-purple-700 hover:cursor-pointer text-white px-6 py-2 rounded-lg font-semibold transition inline-block">
             Sign Up
-          </button>
+          </Link>
         </div>
       </nav>
 
@@ -64,10 +65,10 @@ export default function Home() {
 
             {/* Buttons */}
             <div className="flex items-center gap-4 mb-12">
-              <button className="bg-purple-600 hover:bg-purple-700 hover:cursor-pointer text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition">
+              <Link href="/auth" className="bg-purple-600 hover:bg-purple-700 hover:cursor-pointer text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition inline-flex">
                 <Rocket size={20} />
                 Join the Hub
-              </button>
+              </Link>
               <button className="border border-purple-600 hover:border-purple-500 hover:cursor-pointer text-purple-400 hover:text-purple-300 px-6 py-3 rounded-lg font-semibold transition">
                 Explore Clips
               </button>
@@ -259,13 +260,13 @@ export default function Home() {
               Join over 500,000+ players already building the future of gaming social.
             </p>
             <div className="flex items-center justify-center gap-6">
-              <button className="bg-white hover:bg-gray-100 text-purple-600 px-8 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-600/30 hover:cursor-pointer">
+              <Link href="/auth" className="bg-white hover:bg-gray-100 text-purple-600 px-8 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-600/30 hover:cursor-pointer inline-flex">
                 <UserPlus size={20} />
                 Create Account
-              </button>
-              <button className="border-2 border-white hover:border-purple-300 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-400/30 hover:cursor-pointer">
+              </Link>
+              <Link href="/discover" className="border-2 border-white hover:border-purple-300 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-400/30 hover:cursor-pointer inline-flex">
                 Discover More
-              </button>
+              </Link>
             </div>
           </div>
         </div>

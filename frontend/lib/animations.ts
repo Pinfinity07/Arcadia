@@ -214,17 +214,18 @@ export const animateGameCards = () => {
 
 export const animateCTASection = () => {
   const sections = document.querySelectorAll('section');
-  let ctaSection = null;
+  let ctaSection: HTMLElement | null = null;
   
   // Find CTA section by looking for "Ready to enter the Arcadia hub?" text
   sections.forEach((section) => {
-    if (section.textContent?.includes('Ready to enter')) {
-      ctaSection = section;
+    const el = section as HTMLElement;
+    if (el.textContent?.includes('Ready to enter')) {
+      ctaSection = el;
     }
   });
 
   if (ctaSection) {
-    const ctaBox = ctaSection.querySelector('div[class*="from-purple"]');
+    const ctaBox = (ctaSection as HTMLElement).querySelector('div[class*="from-purple"]') as HTMLElement | null;
     
     if (ctaBox) {
       gsap.set(ctaBox, {
