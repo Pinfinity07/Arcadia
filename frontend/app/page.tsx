@@ -1,4 +1,4 @@
-import { Search, Rocket, Video, Users, Star, Zap } from "lucide-react";
+import { Search, Rocket, Video, Users, Star, Zap, UserPlus, Share2, Mail } from "lucide-react";
 import ClipOfTheDay from "../components/clip_of_the_day";
 
 export default function Home() {
@@ -239,6 +239,61 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <section className="w-full px-4 md:px-10 py-16 md:py-24 bg-gradient-to-r from-purple-600 to-purple-700">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Ready to enter the Arcadia hub?
+          </h2>
+          <p className="text-xl text-purple-100 mb-12 max-w-2xl mx-auto">
+            Join over 500,000+ players already building the future of gaming social.
+          </p>
+          <div className="flex items-center justify-center gap-6 flex-wrap">
+            <button className="bg-white hover:bg-gray-100 text-purple-600 px-8 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-600/30 hover:cursor-pointer">
+              <UserPlus size={20} />
+              Create Account
+            </button>
+            <button className="border-2 border-white hover:border-purple-300 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-400/30 hover:cursor-pointer">
+              Discover More
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="w-full px-4 md:px-10 py-12 border-t border-[#2A1840] bg-[#0F0618]">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-between flex-wrap gap-8">
+            {/* Logo and Copyright */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-purple-500 rounded-lg"></div>
+                <h3 className="text-xl font-bold text-white">Arcadia</h3>
+              </div>
+              <p className="text-gray-500 text-sm">© 2024 Arcadia Platforms Inc. All rights reserved.</p>
+            </div>
+
+            {/* Links */}
+            <div className="flex items-center gap-8 text-gray-400 flex-wrap justify-center md:justify-end">
+              <a href="#" className="hover:text-purple-500 transition">Privacy Policy</a>
+              <a href="#" className="hover:text-purple-500 transition">Terms of Service</a>
+              <a href="#" className="hover:text-purple-500 transition">Contact Support</a>
+              <a href="#" className="hover:text-purple-500 transition">Careers</a>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-4">
+              <button className="text-gray-400 hover:text-purple-500 transition">
+                <Share2 size={20} />
+              </button>
+              <button className="text-gray-400 hover:text-purple-500 transition">
+                <Mail size={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 
