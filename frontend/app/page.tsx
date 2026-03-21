@@ -1,4 +1,4 @@
-import { Search, Rocket } from "lucide-react";
+import { Search, Rocket, Video, Users, Star } from "lucide-react";
 import ClipOfTheDay from "../components/clip_of_the_day";
 
 export default function Home() {
@@ -78,6 +78,68 @@ export default function Home() {
 
           {/* Right Content - Featured Clip */}
           <ClipOfTheDay />
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="w-full px-4 md:px-10 py-16 md:py-24 border-t border-[#2A1840]">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="text-white">Level Up Your</span>
+              <br />
+              <span className="bg-linear-to-r from-purple-500 to-purple-600 bg-clip-text text-transparent">Social Experience</span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Everything you need to stay connected with your favorite games and players in one ecosystem.
+            </p>
+          </div>
+
+          {/* Feature Cards Grid */}
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Clip Sharing Card */}
+            <div className="bg-[#210F36] border border-[#2A1840] hover:border-purple-600 rounded-lg p-8 transition-colors duration-300 group">
+              <div className="w-12 h-12 bg-purple-900 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-800 transition">
+                <Video className="w-6 h-6 text-purple-500" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">Clip Sharing</h3>
+              <p className="text-gray-400 mb-6">
+                Post your epic plays and viral moments instantly. Our high-bitrate player ensures every frame is crisp.
+              </p>
+              <a href="#" className="text-purple-500 hover:text-purple-400 font-semibold flex items-center gap-2 transition">
+                Learn more <span>→</span>
+              </a>
+            </div>
+
+            {/* LFG System Card */}
+            <div className="bg-[#210F36] border border-[#2A1840] hover:border-purple-600 rounded-lg p-8 transition-colors duration-300 group">
+              <div className="w-12 h-12 bg-purple-900 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-800 transition">
+                <Users className="w-6 h-6 text-purple-500" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">LFG System</h3>
+              <p className="text-gray-400 mb-6">
+                Find players that match your playstyle and rank. Filter by game, region, and competitive mindset.
+              </p>
+              <a href="#" className="text-purple-500 hover:text-purple-400 font-semibold flex items-center gap-2 transition">
+                Find a squad <span>→</span>
+              </a>
+            </div>
+
+            {/* Game Reviews Card */}
+            <div className="bg-[#210F36] border border-[#2A1840] hover:border-purple-600 rounded-lg p-8 transition-colors duration-300 group">
+              <div className="w-12 h-12 bg-purple-900 rounded-lg flex items-center justify-center mb-6 group-hover:bg-purple-800 transition">
+                <Star className="w-6 h-6 text-purple-500" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">Game Reviews</h3>
+              <p className="text-gray-400 mb-6">
+                Get honest feedback and ratings on the latest titles. Written by gamers, for gamers, no fluff included.
+              </p>
+              <a href="#" className="text-purple-500 hover:text-purple-400 font-semibold flex items-center gap-2 transition">
+                Read reviews <span>→</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </div>
