@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Lock, Mail, Eye, EyeOff, Github, User, Gamepad2 } from 'lucide-react';
-import { initializeLoginAnimations, animatePageTransition } from '@/lib/loginAnimations';
-import gsap from 'gsap';
+import { Lock, Mail, Eye, EyeOff, Gamepad2, User } from 'lucide-react';
+import { initializeLoginAnimations, animatePageTransition, animateFormTransition, animateFormIn } from '@/lib/loginAnimations';
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -20,31 +19,14 @@ export default function AuthPage() {
   const handleToggle = (mode: boolean) => {
     if (isLogin === mode) return;
 
-    // Animate form out
-    const form = document.querySelector('.auth-form');
-    const header = document.querySelector('.auth-header');
+    animateFormTransition();
     
-    if (form && header) {
-      gsap.to([header, form], {
-        duration: 0.3,
-        opacity: 0,
-        y: -15,
-        ease: 'power2.in',
-        onComplete: () => {
-          setIsLogin(mode);
-          // Animate form in
-          gsap.from([header, form], {
-            duration: 0.4,
-            opacity: 0,
-            y: 15,
-            ease: 'power2.out',
-            clearProps: 'all',
-          });
-        },
-      });
-    } else {
+    setTimeout(() => {
       setIsLogin(mode);
-    }
+      setTimeout(() => {
+        animateFormIn();
+      }, 20);
+    }, 250);
   };
 
   const heroTitle = isLogin 
@@ -53,7 +35,7 @@ export default function AuthPage() {
 
   const heroDesc = isLogin
     ? 'Connect with millions of players, join guilds, and share your greatest gaming moments on the ultimate platform for gamers.'
-    : 'Create an account and start connecting with millions of players, join guilds, and share your greatest gaming moments on the ultimate platform for gamers.';
+    : 'Create an account and start connecting with millions of players, join guilds, and share your greatest gaming moments.';
 
   return (
     <div className="w-screen min-h-screen bg-[#1A1022] flex page-transition opacity-100">
@@ -86,7 +68,7 @@ export default function AuthPage() {
         </div>
 
         {/* Hero Image */}
-        <div className="mt-12 relative h-96">
+        <div className="mt-12 relative h-96 hero-image">
           <div className="absolute inset-0 bg-gradient-to-t from-purple-600/20 to-transparent rounded-xl overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop" 
@@ -103,7 +85,7 @@ export default function AuthPage() {
           {/* Header */}
           <div className="mb-10 auth-header login-header">
             <h2 className="text-4xl font-bold text-white mb-3">
-              {isLogin ? 'Welcome back' : 'Join the Vanguard'}
+              {isLogin ? 'Welcome back' : 'Join Arcadia'}
             </h2>
             <p className="text-gray-400 text-base">
               {isLogin 
@@ -146,7 +128,7 @@ export default function AuthPage() {
                   <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-purple-400 transition" size={18} />
                   <input
                     type="text"
-                    placeholder="Vanguard_01"
+                    placeholder="your_username"
                     className="w-full bg-[#1A1530] border border-[#2A2540] text-gray-200 placeholder-gray-500 rounded-lg pl-12 pr-4 py-2.5 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500/30 transition duration-200"
                   />
                 </div>
@@ -281,7 +263,7 @@ export default function AuthPage() {
           </form>
 
           {/* Divider */}
-          <div className="flex items-center gap-4 my-8">
+          <div className="flex items-center gap-4 my-8 divider">
             <div className="flex-1 h-px bg-[#2A1840]"></div>
             <span className="text-xs text-gray-500 font-semibold uppercase tracking-wide">Or continue with</span>
             <div className="flex-1 h-px bg-[#2A1840]"></div>
@@ -293,7 +275,6 @@ export default function AuthPage() {
               <svg className="w-5 h-5 group-hover:text-purple-400 transition" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
               </svg>
-              <span className="text-sm font-semibold hidden sm:inline">GitHub</span>
             </button>
 
             <button className="bg-[#1A1530] border border-[#2A2540] hover:border-purple-500/50 text-gray-400 hover:text-white py-3.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#251C40] group">
@@ -303,19 +284,17 @@ export default function AuthPage() {
                 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
                 <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
               </svg>
-              <span className="text-sm font-semibold hidden sm:inline">Google</span>
             </button>
 
             <button className="bg-[#1A1530] border border-[#2A2540] hover:border-purple-500/50 text-gray-400 hover:text-white py-3.5 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#251C40] group">
               <svg className="w-5 h-5 group-hover:text-purple-400 transition" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.317 4.3671a19.8062 19.8062 0 0 0-4.8851-1.5152.074.074 0 0 0-.0789.0371c-.211.3667-.444.8461-.607 1.2250a18.27 18.27 0 0 0-5.487 0c-.163-.3789-.405-.8583-.618-1.2250a.077.077 0 0 0-.0790-.037 19.7355 19.7355 0 0 0-4.8854 1.515.0766.0766 0 0 0-.0326.0277C1.087 8.3093.7065 12.0038 1.1004 15.6212a.0996.0996 0 0 0 .0393.0434 19.9643 19.9643 0 0 0 6.0859 3.0812.0777.0777 0 0 0 .084-.0277c.462-.6122.873-1.2587 1.216-1.9365a.0755.0755 0 0 0-.0379-.1047 12.9964 12.9964 0 0 1-1.853-.892.0744.0744 0 0 1-.0074-.1193c.122-.092.245-.189.365-.276a.0749.0749 0 0 1 .078-.0105c3.928 1.793 8.18 1.793 12.062 0a.0747.0747 0 0 1 .078.0095c.12.087.242.184.365.276a.0745.0745 0 0 1-.009.1192 12.979 12.979 0 0 1-1.873.892.0744.0744 0 0 0-.037.1047c.342.7265.753 1.3832 1.215 1.9584a.077.077 0 0 0 .084.0277 19.963 19.963 0 0 0 6.097-3.0812.0796.0796 0 0 0 .029-.0434c.487-3.9116.146-7.3286-2.021-10.3359a.0628.0628 0 0 0-.028-.0277zM8.02 15.3312c-.8981 0-1.6381-.8139-1.6381-1.8139 0-1.0139.7215-1.8139 1.6381-1.8139.8323 0 1.6381.8139 1.6381 1.8139 0 1-.757 1.8139-1.6381 1.8139zm7.9634 0c-.8323 0-1.6381-.8139-1.6381-1.8139 0-1.0139.7215-1.8139 1.6381-1.8139.8981 0 1.6381.8139 1.6381 1.8139 0 1-.6595 1.8139-1.6381 1.8139z"/>
               </svg>
-              <span className="text-sm font-semibold hidden sm:inline">Discord</span>
             </button>
           </div>
 
           {/* Toggle Link */}
-          <p className="text-center text-gray-400 text-sm mt-8">
+          <p className="text-center text-gray-400 text-sm mt-8 toggle-link">
             {isLogin ? "Don't have an account? " : 'Already have an account? '}
             <button
               onClick={() => handleToggle(!isLogin)}

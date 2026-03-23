@@ -11,6 +11,61 @@ export const animatePageTransition = () => {
   }
 };
 
+export const animateFormTransition = () => {
+  // Smooth fade-out and fade-in for form when switching between login/signup
+  const authForm = document.querySelector('.auth-form');
+  const authHeader = document.querySelector('.auth-header');
+  
+  if (authForm && authHeader) {
+    gsap.to([authHeader, authForm], {
+      duration: 0.25,
+      opacity: 0,
+      y: -10,
+      ease: 'power2.in',
+    });
+  }
+};
+
+export const animateFormIn = () => {
+  // Animate form fade-in after state change
+  const authForm = document.querySelector('.auth-form');
+  const authHeader = document.querySelector('.auth-header');
+  const formGroups = document.querySelectorAll('.form-group');
+  
+  if (authForm && authHeader) {
+    // Reset to animate fresh
+    gsap.set([authHeader, authForm], { opacity: 0, y: 10 });
+    
+    // Header
+    gsap.to(authHeader, {
+      duration: 0.4,
+      opacity: 1,
+      y: 0,
+      ease: 'power2.out',
+    });
+    
+    // Form
+    gsap.to(authForm, {
+      duration: 0.4,
+      opacity: 1,
+      y: 0,
+      ease: 'power2.out',
+      delay: 0.05,
+    });
+    
+    // Individual form groups with stagger
+    formGroups.forEach((group, index) => {
+      gsap.to(group, {
+        duration: 0.3,
+        opacity: 1,
+        y: 0,
+        ease: 'power2.out',
+        delay: 0.1 + index * 0.04,
+      });
+    });
+  }
+};
+
 export const initializeLoginAnimations = () => {
   // Reset animation flag on each page load for fresh animations
   document.documentElement.removeAttribute('data-login-animated');
@@ -27,10 +82,10 @@ export const initializeLoginAnimations = () => {
       if (heading) {
         const spans = heading.querySelectorAll('span');
         gsap.from(spans, {
-          duration: 0.5,
+          duration: 0.6,
           opacity: 0,
-          y: 15,
-          stagger: 0.08,
+          y: 20,
+          stagger: 0.1,
           ease: 'power3.out',
           clearProps: 'all',
         });
@@ -39,9 +94,9 @@ export const initializeLoginAnimations = () => {
       // Animate description
       if (description) {
         gsap.from(description, {
-          duration: 0.5,
+          duration: 0.6,
           opacity: 0,
-          y: 12,
+          y: 15,
           delay: 0.2,
           ease: 'power2.out',
           clearProps: 'all',
@@ -51,24 +106,37 @@ export const initializeLoginAnimations = () => {
       // Animate status
       if (status) {
         gsap.from(status, {
-          duration: 0.5,
+          duration: 0.6,
           opacity: 0,
-          y: 12,
-          delay: 0.3,
+          y: 15,
+          delay: 0.35,
           ease: 'power2.out',
           clearProps: 'all',
         });
       }
     }
 
-    // Animate login header
-    const loginHeader = document.querySelector('.login-header');
-    if (loginHeader) {
-      gsap.from(loginHeader, {
-        duration: 0.5,
+    // Animate hero image
+    const heroImage = document.querySelector('.hero-image');
+    if (heroImage) {
+      gsap.from(heroImage, {
+        duration: 0.8,
         opacity: 0,
-        x: 12,
-        delay: 0.05,
+        scale: 0.95,
+        delay: 0.4,
+        ease: 'power2.out',
+        clearProps: 'all',
+      });
+    }
+
+    // Animate auth header
+    const authHeader = document.querySelector('.auth-header');
+    if (authHeader) {
+      gsap.from(authHeader, {
+        duration: 0.6,
+        opacity: 0,
+        x: 20,
+        delay: 0.1,
         ease: 'power2.out',
         clearProps: 'all',
       });
@@ -78,35 +146,60 @@ export const initializeLoginAnimations = () => {
     const loginTabs = document.querySelector('.login-tabs');
     if (loginTabs) {
       gsap.from(loginTabs, {
-        duration: 0.5,
+        duration: 0.6,
         opacity: 0,
-        y: 10,
-        delay: 0.1,
+        y: 15,
+        delay: 0.15,
         ease: 'power2.out',
         clearProps: 'all',
       });
     }
 
-    // Animate form groups
+    // Animate form groups with a nice cascade
     const formGroups = document.querySelectorAll('.form-group');
     gsap.from(formGroups, {
-      duration: 0.4,
+      duration: 0.5,
       opacity: 0,
-      y: 10,
-      stagger: 0.06,
-      delay: 0.2,
+      y: 15,
+      stagger: 0.08,
+      delay: 0.25,
       ease: 'power2.out',
       clearProps: 'all',
     });
+
+    // Animate checkboxes and additional elements
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    if (checkboxes.length > 0) {
+      gsap.from(checkboxes, {
+        duration: 0.5,
+        opacity: 0,
+        x: -10,
+        delay: 0.35,
+        ease: 'power2.out',
+        clearProps: 'all',
+      });
+    }
 
     // Animate sign in button
     const signInBtn = document.querySelector('.sign-in-btn');
     if (signInBtn) {
       gsap.from(signInBtn, {
-        duration: 0.4,
+        duration: 0.5,
         opacity: 0,
-        y: 10,
+        y: 15,
         delay: 0.4,
+        ease: 'power2.out',
+        clearProps: 'all',
+      });
+    }
+
+    // Animate divider
+    const divider = document.querySelector('.divider');
+    if (divider) {
+      gsap.from(divider, {
+        duration: 0.5,
+        opacity: 0,
+        delay: 0.5,
         ease: 'power2.out',
         clearProps: 'all',
       });
@@ -115,19 +208,34 @@ export const initializeLoginAnimations = () => {
     // Animate social buttons
     const socialButtons = document.querySelectorAll('[class*="social-buttons"] button');
     gsap.from(socialButtons, {
-      duration: 0.4,
+      duration: 0.5,
       opacity: 0,
-      y: 10,
-      stagger: 0.06,
-      delay: 0.48,
+      y: 15,
+      stagger: 0.08,
+      delay: 0.55,
       ease: 'power2.out',
       clearProps: 'all',
     });
 
-    // Add input focus animations (no state persistence)
+    // Animate toggle link
+    const toggleLink = document.querySelector('.toggle-link');
+    if (toggleLink) {
+      gsap.from(toggleLink, {
+        duration: 0.5,
+        opacity: 0,
+        y: 10,
+        delay: 0.65,
+        ease: 'power2.out',
+        clearProps: 'all',
+      });
+    }
+
+    // Add input focus animations
     addInputFocusAnimations();
-    // Add button hover effects (no state persistence)
+    // Add button hover effects
     addLoginButtonHoverEffects();
+    // Add tab button animations
+    addTabButtonAnimations();
   }, 10);
 };
 
@@ -153,53 +261,15 @@ const addInputFocusAnimations = () => {
   });
 };
 
-const addLoginButtonHoverEffects = () => {
-  // Sign in button hover
-  const signInBtn = document.querySelector('.sign-in-btn');
-  if (signInBtn) {
-    signInBtn.addEventListener('mouseenter', () => {
-      gsap.to(signInBtn, {
-        duration: 0.25,
-        scale: 1.02,
-        ease: 'power2.out',
-      });
-
-      const arrow = signInBtn.querySelector('span');
-      if (arrow) {
-        gsap.to(arrow, {
-          duration: 0.25,
-          x: 4,
-          ease: 'power2.out',
-        });
-      }
-    });
-
-    signInBtn.addEventListener('mouseleave', () => {
-      gsap.to(signInBtn, {
-        duration: 0.25,
-        scale: 1,
-        ease: 'power2.out',
-      });
-
-      const arrow = signInBtn.querySelector('span');
-      if (arrow) {
-        gsap.to(arrow, {
-          duration: 0.25,
-          x: 0,
-          ease: 'power2.out',
-        });
-      }
-    });
-  }
-
-  // Social buttons hover
-  const socialButtons = document.querySelectorAll('[class*="social-buttons"] button');
-  socialButtons.forEach((btn) => {
+const addTabButtonAnimations = () => {
+  // Tab buttons with active state animation
+  const tabButtons = document.querySelectorAll('.login-tabs button');
+  
+  tabButtons.forEach((btn) => {
     btn.addEventListener('mouseenter', () => {
       gsap.to(btn, {
         duration: 0.2,
-        borderColor: '#a855f7',
-        backgroundColor: '#2A1840',
+        scale: 1.02,
         ease: 'power2.out',
       });
     });
@@ -207,10 +277,93 @@ const addLoginButtonHoverEffects = () => {
     btn.addEventListener('mouseleave', () => {
       gsap.to(btn, {
         duration: 0.2,
-        borderColor: '#2A1840',
-        backgroundColor: '#210F36',
+        scale: 1,
         ease: 'power2.out',
       });
+    });
+  });
+};
+
+const addLoginButtonHoverEffects = () => {
+  // Sign in button hover with enhanced effects
+  const signInBtn = document.querySelector('.sign-in-btn');
+  if (signInBtn) {
+    signInBtn.addEventListener('mouseenter', () => {
+      gsap.to(signInBtn, {
+        duration: 0.3,
+        scale: 1.03,
+        boxShadow: '0 20px 30px rgba(168, 85, 247, 0.4)',
+        ease: 'power2.out',
+      });
+
+      const arrow = signInBtn.querySelector('span');
+      if (arrow) {
+        gsap.to(arrow, {
+          duration: 0.3,
+          x: 6,
+          ease: 'power2.out',
+        });
+      }
+    });
+
+    signInBtn.addEventListener('mouseleave', () => {
+      gsap.to(signInBtn, {
+        duration: 0.3,
+        scale: 1,
+        boxShadow: '0 0 0 rgba(168, 85, 247, 0)',
+        ease: 'power2.out',
+      });
+
+      const arrow = signInBtn.querySelector('span');
+      if (arrow) {
+        gsap.to(arrow, {
+          duration: 0.3,
+          x: 0,
+          ease: 'power2.out',
+        });
+      }
+    });
+  }
+
+  // Social buttons hover with enhanced transitions
+  const socialButtons = document.querySelectorAll('[class*="social-buttons"] button');
+  socialButtons.forEach((btn) => {
+    btn.addEventListener('mouseenter', () => {
+      gsap.to(btn, {
+        duration: 0.25,
+        borderColor: '#a855f7',
+        backgroundColor: '#2A1840',
+        scale: 1.05,
+        ease: 'power2.out',
+      });
+
+      const icon = btn.querySelector('svg');
+      if (icon) {
+        gsap.to(icon, {
+          duration: 0.25,
+          scale: 1.15,
+          ease: 'back.out(1.5)',
+        });
+      }
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, {
+        duration: 0.25,
+        borderColor: '#2A2540',
+        backgroundColor: '#1A1530',
+        scale: 1,
+        ease: 'power2.out',
+      });
+
+      const icon = btn.querySelector('svg');
+      if (icon) {
+        gsap.to(icon, {
+          duration: 0.25,
+          scale: 1,
+          ease: 'power2.out',
+        });
+      }
     });
   });
 };
